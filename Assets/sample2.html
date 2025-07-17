@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main-one {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            gap: 20px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .Quote-one {
+            font-size: 20px;
+            font-weight: 500;
+            max-width: 800px;
+        }
+
+        .Quote-two {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .Quote-two .text {
+            position: relative;
+            font-size: 60px;
+            font-weight: 900;
+            z-index: -1;
+            color: black;
+            white-space: nowrap;
+        }
+
+        .text.sec-text {
+            color: red;
+            overflow: hidden;
+        }
+
+        .text.sec-text::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgb(159, 83, 83);
+            border-left: 5px solid rgb(0, 0, 0);
+            animation: slide 4s steps(12) infinite;
+        }
+
+        @keyframes slide {
+            0%, 40%, 100% {
+                left: 0%;
+            }
+            50%, 60% {
+                left: calc(100% + 5px);
+            }
+        }
+
+        /* Responsive Design for Smaller Screens */
+        @media (max-width: 768px) {
+            .Quote-one {
+                font-size: 16px;
+                max-width: 90%;
+            }
+
+            .Quote-two .text {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Quote-one {
+                font-size: 14px;
+            }
+
+            .Quote-two .text {
+                font-size: 30px;
+            }
+
+            .text.sec-text::before {
+                border-left: 3px solid rgb(0, 0, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="main-one">
+        <div class="Quote-one">Master a new skill, kickstart your passion project, and achieve the career you’ve always dreamed of.</div>
+        <div class="Quote-two">
+            <span class="text first-text">One Mentor at a Time, </span>
+            <span class="text sec-text"></span>
+        </div>
+    </main>
+
+    <script>
+        const text = document.querySelector(".sec-text");
+        const words = ["Your Growth", "Web Development", "Hackathon", "Freelance"];
+        let index = 0;
+
+        const textLoad = () => {
+            text.textContent = words[index];
+            index = (index + 1) % words.length;
+        };
+
+        // Change text every 4 seconds
+        textLoad();
+        setInterval(textLoad, 4000);
+    </script>
+    
+</body>
+</html>
